@@ -3,6 +3,7 @@ import secrets
 from flask import Flask, redirect, request, session, url_for, render_template_string
 from authlib.integrations.flask_client import OAuth
 import requests
+from requests_oauthlib import OAuth1
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -61,7 +62,7 @@ def apply():
     oauth_token = token['oauth_token']
     oauth_token_secret = token['oauth_token_secret']
 
-    auth = requests.auth.OAuth1(
+    auth = OAuth1(
         TWITTER_API_KEY,
         TWITTER_API_SECRET,
         oauth_token,
