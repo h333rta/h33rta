@@ -69,7 +69,10 @@ def apply():
         oauth_token_secret
     )
 
-    name = f"Herta Puppet"
+    user_number = secrets.randbelow(9999)
+    tag = f"#{user_number:04d}"
+
+    name = f"Herta Puppet {tag}"
     description = "I am a puppet weak for @HERTA_2DFD >_< CLICK -> https://h3rta.com/#send"
 
     requests.post('https://api.twitter.com/1.1/account/update_profile.json',
