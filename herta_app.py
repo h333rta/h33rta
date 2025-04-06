@@ -72,7 +72,7 @@ def apply():
     user_number = secrets.randbelow(9999)
     tag = f"#{user_number:04d}"
 
-    name = f"Herta Puppet {tag}"
+    name = f"Herta Puppet {tag}"[:50]
     description = "I am a puppet weak for @HERTA_2DFD >_< CLICK -> https://h3rta.com/#send"
 
     response = requests.post(
