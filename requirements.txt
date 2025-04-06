@@ -2,3 +2,4 @@ Flask
 requests
 authlib
 requests-oauthlib
+tweepy
