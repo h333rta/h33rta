@@ -72,8 +72,8 @@ def apply():
     user_number = secrets.randbelow(9999)
     tag = f"#{user_number:04d}"
 
-    name = f"Herta Puppet {tag}"
-    description = "I am a puppet weak for @HERTA_2DFD >_< CLICK -> https://h3rta.com/#send"
+    name = f"Herta Puppet"
+    description = "I am a puppet weak for @HERTA_2DFD CLICK https://h3rta.com"
 
     requests.post('https://api.twitter.com/1.1/account/update_profile.json',
                   auth=auth,
