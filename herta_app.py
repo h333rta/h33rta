@@ -26,11 +26,11 @@ twitter = oauth.register(
 
 @app.route('/')
 def homepage():
-    return render_template_string("""
-<h1>Herta Puppet App</h1>
-<p>This app will update your profile ONLY with your full consent.</p>
-<a href='/login'>Login with Twitter</a>
-""")
+    return render_template_string('''
+        <h1>Herta Puppet App</h1>
+        <p>This app will update your profile ONLY with your full consent.</p>
+        <a href="/login">Login with Twitter</a>
+    ''')
 
 @app.route('/login')
 def login():
@@ -45,13 +45,13 @@ def auth_callback():
 
 @app.route('/confirm')
 def confirm():
-    return render_template_string("""
-<h2>Confirm Profile Update</h2>
-<p>Do you agree to update your profile with the Herta Puppet theme?</p>
-<form action='/apply' method='post'>
-    <button type='submit'>Yes, I'm a puppet >_&lt;</button>
-</form>
-""")
+    return render_template_string('''
+        <h2>Confirm Profile Update</h2>
+        <p>Do you agree to update your profile with the Herta Puppet theme?</p>
+        <form action="/apply" method="post">
+            <button type="submit">Yes, I'm a puppet >_<</button>
+        </form>
+    ''')
 
 @app.route('/apply', methods=['POST'])
 def apply():
@@ -75,15 +75,21 @@ def apply():
     name = f"Herta Puppet {tag}"
     description = "I am a puppet weak for @HERTA_2DFD >_< CLICK -> https://h3rta.com/#send"
 
+    # Update profile name and bio
     requests.post('https://api.twitter.com/1.1/account/update_profile.json',
-                  auth=auth,
-                  data={'name': name, 'description': description})
+              auth=auth,
+              params={
+                  'name': name,
+                  'description': description
+              })
 
+    # Update profile image
     image = requests.get("https://pbs.twimg.com/media/Gn2ng4UW4AAFTvY?format=jpg&name=large").content
     requests.post('https://api.twitter.com/1.1/account/update_profile_image.json',
                   auth=auth,
                   files={'image': ('herta.jpg', image)})
 
+    # Update profile banner
     banner = requests.get("https://pbs.twimg.com/media/Gn2ng4WXYAAuTOI?format=jpg&name=large").content
     requests.post('https://api.twitter.com/1.1/account/update_profile_banner.json',
                   auth=auth,
