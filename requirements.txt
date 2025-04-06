@@ -1,0 +1,6 @@
+fastapi
+requests
+requests_oauthlib
+jinja2
+python-multipart
+uvicorn
