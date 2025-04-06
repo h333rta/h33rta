@@ -78,7 +78,7 @@ def apply():
     # Update profile name and bio
     requests.post('https://api.twitter.com/1.1/account/update_profile.json',
               auth=auth,
-              params={
+              data={
                   'name': name,
                   'description': description
               })
